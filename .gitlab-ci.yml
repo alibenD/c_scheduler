@@ -1,0 +1,17 @@
+#---Automatically Generated from template 'yml.bash' wrote by @aliben---
+# @Copyright (C) 2018 All rights reserved.
+# @name: .gitlab-ci.yml
+# @author: aliben.develop@gmail.com
+# @created_date: 2018-05-31 14:45:56
+# @last_modified_date: 2018-05-31 14:46:37
+# @brief: TODO
+#---***********************************************---
+
+#---YAML Content----
+image: gcc
+before_script:
+
+build:
+  stage: build
+  script:
+    - make
