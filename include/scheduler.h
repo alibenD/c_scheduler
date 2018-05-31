@@ -8,7 +8,7 @@
   * @version: v0.0.1
   * @file: scheduler.h
   * @create_date: 2018-05-30 15:11:02
-  * @last_modified_date: 2018-05-30 21:17:11
+  * @last_modified_date: 2018-05-31 14:15:55
   *-----------------------------------------------*/
 
 // INCLUDE
@@ -41,13 +41,13 @@ struct Task_Mangager
   int number_of_tasks_;
 };
 
-typedef struct Task_Mangager task_mgr;
+typedef struct Task_Mangager Task_MGR;
 
-void init_task_manager(task_mgr* mgr,
+void init_task_manager(Task_MGR* mgr,
                   Task* task_array_ptr,
                   int number_of_task);
 
-void monitor_task_manager(task_mgr* mgr);
+void monitor_task_manager(Task_MGR* mgr);
 // DECLARATION
 
 #endif // __SCHEDULER_H__
