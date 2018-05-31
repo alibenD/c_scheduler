@@ -1,0 +1,1 @@
+[![pipeline status](http://gitlab.aliben-develop.com/aliben/c_scheduler/badges/master/pipeline.svg)](http://gitlab.aliben-develop.com/aliben/c_scheduler/commits/master)
