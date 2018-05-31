@@ -18,5 +18,4 @@
 *.swp
 *.o
 *.obj
-build/bin/*.*
-build/obj/*.o
+build/bin/test_*
