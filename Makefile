@@ -70,7 +70,7 @@
 #----------------------------------------------------------------------
 #TARGET
 
-all: all_obj $(TARGET_BIN_LIST) $(TEST_OBJECT_LIST) $(TEST_BIN_LIST)
+all: check_build all_obj $(TARGET_BIN_LIST) $(TEST_OBJECT_LIST) $(TEST_BIN_LIST)
 
 all_obj: $(TARGET_OBJECT_LIST)
 
@@ -86,7 +86,10 @@ $(TARGET_BIN_LIST): %: %.o
 $(TEST_BIN_LIST): %: %.o
 	$(CC) $(CCFLAG) -o $(BINARY_DIR)$@ $(OBJECT_DIR)$< $(OBJECT_DIR)$(TARGET_OBJECT_LIST) $(INCLUDEFLAG)
 
-.PHONY: clean
+.PHONY: clean check_build
+
+check_build:
+	if [ ! -e build ]; then mkdir -p build/bin build/obj; fi
 
 clean:
 	rm -rf ${OBJECT_BUILD_FILE_LIST}
