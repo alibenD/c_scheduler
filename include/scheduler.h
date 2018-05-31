@@ -8,7 +8,7 @@
   * @version: v0.0.1
   * @file: scheduler.h
   * @create_date: 2018-05-30 15:11:02
-  * @last_modified_date: 2018-05-31 14:15:55
+  * @last_modified_date: 2018-05-31 17:38:06
   *-----------------------------------------------*/
 
 // INCLUDE
@@ -36,7 +36,6 @@ typedef struct Task_Element Task;
 struct Task_Mangager
 {
   Task* task_list_ptr_;
-  int index_task_;
   int maximum_tasks_;
   int number_of_tasks_;
 };
@@ -44,8 +43,10 @@ struct Task_Mangager
 typedef struct Task_Mangager Task_MGR;
 
 void init_task_manager(Task_MGR* mgr,
-                  Task* task_array_ptr,
-                  int number_of_task);
+                       Task* task_array_ptr,
+                       int number_of_task);
+void add_new_task(Task_MGR* mgr,
+                  Task* task_will_add);
 
 void monitor_task_manager(Task_MGR* mgr);
 // DECLARATION
