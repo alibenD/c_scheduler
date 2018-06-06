@@ -3,7 +3,7 @@
 # @Copyright (C) 2018 All rights reserved.
 # @filename: Makefile
 # @author: aliben.develop@gmail.com
-# @create_date: 2018-05-31 21:37:15
+# @create_date: 2018-05-30 22:57:13
 # @last_modified_date: NO_LAST_MODIFIED_DATE
 # @description: TODO
 #---****************************************************************---
@@ -40,7 +40,7 @@
     TEST_FILE_LIST=./test/test_scheduler.c
     OBJECT_BUILD_FILE_LIST=./build/obj/scheduler.o ./build/obj/test_scheduler.o
 
-    BINARY_BUILD_FILE_LIST=./build/bin/test_scheduler
+    BINARY_BUILD_FILE_LIST=./build/bin/*
 
 #----------------------------!!!!!!!-----------------------------
 #---This field should be set while you created your program
@@ -70,21 +70,21 @@
 #----------------------------------------------------------------------
 #TARGET
 
-all: all_obj $(TARGET_BIN_LIST) $(TEST_OBJECT_LIST) $(TEST_BIN_LIST)
+all: check_build all_obj $(TARGET_BIN_LIST) $(TEST_OBJECT_LIST) $(TEST_BIN_LIST)
 
 all_obj: $(TARGET_OBJECT_LIST)
 
 $(TARGET_OBJECT_LIST): %.o : %.c
-	$(CC) $(CCFLAG) -c $< $(INCLUDEFLAG) -o $(OBJECT_DIR)$@
+	$(CC) $(CCFLAG) -o $(OBJECT_DIR)$@ -c $< $(INCLUDEFLAG)
 
 $(TEST_OBJECT_LIST): %.o : %.c
-	$(CC) $(CCFLAG) -c $< $(INCLUDEFLAG) -o $(OBJECT_DIR)$@
+	$(CC) $(CCFLAG) -o $(OBJECT_DIR)$@ -c $< $(INCLUDEFLAG)
 
 $(TARGET_BIN_LIST): %: %.o 
-	$(CC) $(CCFLAG) $(OBJECT_DIR)$<  $(OBJECT_DIR)$(DEP) -o $(BINARY_DIR)$@ $(INCLUDEFLAG)
+	$(CC) $(CCFLAG)  -o $(BINARY_DIR)$@ $(OBJECT_DIR)$<  $(OBJECT_DIR)$(DEP) $(INCLUDEFLAG)
 
 $(TEST_BIN_LIST): %: %.o
-	$(CC) $(OBJECT_DIR)$< $(OBJECT_DIR)$(OBJECT_LIST) $(INCLUDEFLAG) -o $(BINARY_DIR)$@
+	$(CC) $(CCFLAG) -o $(BINARY_DIR)$@ $(OBJECT_DIR)$< $(OBJECT_DIR)$(TARGET_OBJECT_LIST) $(INCLUDEFLAG)
 
 .PHONY: clean check_build
 
