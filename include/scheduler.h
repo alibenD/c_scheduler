@@ -8,12 +8,20 @@
   * @version: v0.0.1
   * @file: scheduler.h
   * @create_date: 2018-05-30 15:11:02
-  * @last_modified_date: 2018-05-31 17:38:06
+  * @last_modified_date: 2018-06-06 22:27:21
   *-----------------------------------------------*/
 
 // INCLUDE
 #ifndef INF
 #define INF -1
+#endif
+
+#ifndef FAILED
+#define FAILED -1
+#endif
+
+#ifndef SUCCESSED
+#define SUCCESSED -1
 #endif
 
 typedef unsigned char flag_t;
@@ -42,13 +50,16 @@ struct Task_Mangager
 
 typedef struct Task_Mangager Task_MGR;
 
-void init_task_manager(Task_MGR* mgr,
+int init_task_manager(Task_MGR* mgr,
                        Task* task_array_ptr,
                        int number_of_task);
-void add_new_task(Task_MGR* mgr,
-                  Task* task_will_add);
+int push_task(Task_MGR* mgr,
+               Task* task_will_add);
+int add_task(Task_MGR* mgr,
+              Task* task_will_add,
+              int insert_position);
 
-void monitor_task_manager(Task_MGR* mgr);
+int monitor_task_manager(Task_MGR* mgr);
 // DECLARATION
 
 #endif // __SCHEDULER_H__
