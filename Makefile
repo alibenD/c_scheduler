@@ -70,7 +70,7 @@
 #----------------------------------------------------------------------
 #TARGET
 
-all: all_obj check_build $(TARGET_BIN_LIST) $(TEST_OBJECT_LIST) $(TEST_BIN_LIST)
+all: check_build all_obj $(TARGET_BIN_LIST) $(TEST_OBJECT_LIST) $(TEST_BIN_LIST)
 
 all_obj: $(TARGET_OBJECT_LIST)
 
@@ -94,4 +94,5 @@ check_build:
 clean:
 	rm -rf ${OBJECT_BUILD_FILE_LIST}
 	rm -rf ${BINARY_BUILD_FILE_LIST}
+	rm -rf ${BUILD_DIR}
 
