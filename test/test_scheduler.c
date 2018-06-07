@@ -4,7 +4,7 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @created_date: 2018-05-30 20:15:28
-  * @last_modified_date: 2018-06-06 23:13:36
+  * @last_modified_date: 2018-06-07 22:11:21
   * @brief: TODO
   *-----------------------------------------------*/
 
@@ -47,6 +47,12 @@ int main(int argc, char** argv)
   add_task(&task_mgr, &task7, 8);
   monitor_task_manager(&task_mgr);
   add_task(&task_mgr, &task7, 4);
+  monitor_task_manager(&task_mgr);
+
+  pop_task(&task_mgr);
+  monitor_task_manager(&task_mgr);
+
+  delete_task(&task_mgr, 4);
   monitor_task_manager(&task_mgr);
   return 0;
 }
