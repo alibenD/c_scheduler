@@ -8,7 +8,7 @@
   * @version: v0.0.1
   * @file: scheduler.h
   * @create_date: 2018-05-30 15:11:02
-  * @last_modified_date: 2018-06-07 21:44:55
+  * @last_modified_date: 2018-06-07 22:42:25
   *-----------------------------------------------*/
 
 // INCLUDE
@@ -64,7 +64,7 @@ int add_task(Task_MGR* mgr,
 int pop_task(Task_MGR* mgr);
 int delete_task(Task_MGR* mgr,
                 int index);
-
+int dispatch_task(Task_MGR* mgr);
 int monitor_task_manager(Task_MGR* mgr);
 // DECLARATION
 

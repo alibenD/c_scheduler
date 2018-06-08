@@ -4,7 +4,7 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @created_date: 2018-05-30 15:11:02
-  * @last_modified_date: 2018-06-07 22:11:42
+  * @last_modified_date: 2018-06-08 21:21:37
   * @brief: TODO
   *-----------------------------------------------*/
 
@@ -25,7 +25,7 @@ int init_task_manager(Task_MGR* mgr,
 
 int monitor_task_manager(Task_MGR* mgr)
 {
-  printf("Maximum Task:  %d\n", mgr->maximum_tasks_);
+  //printf("Maximum Task:  %d\n", mgr->maximum_tasks_);
   printf("The number of Tasks: %d\n", mgr->number_of_tasks_);
   printf("\n");
   printf("\n");
@@ -123,4 +123,24 @@ int delete_task(Task_MGR* mgr,
     mgr->number_of_tasks_--;
     return SUCCESSED;
   }
+}
+
+int dispatch_task(Task_MGR* mgr)
+{
+  int index = 0;
+  int void_ptr = 0;
+  while(index < mgr->number_of_tasks_)
+  {
+    if(mgr->task_list_ptr_[index].is_runnning_ != 0)
+    {
+      mgr->task_list_ptr_[index].task_ptr((void*)&void_ptr);
+      if(mgr->task_list_ptr_[index].is_repeat_ == 0)
+      {
+        delete_task(mgr, index);
+        continue;
+      }
+      index++;
+    }
+  }
+  return 0;
 }
