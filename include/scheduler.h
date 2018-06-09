@@ -8,7 +8,7 @@
   * @version: v0.0.1
   * @file: scheduler.h
   * @create_date: 2018-05-30 15:11:02
-  * @last_modified_date: 2018-06-07 22:42:25
+  * @last_modified_date: 2018-06-08 23:53:38
   *-----------------------------------------------*/
 
 // INCLUDE
@@ -25,7 +25,7 @@
 #endif
 
 #define DEBUG_MODE
-#undef DEBUG_MODE
+//#undef DEBUG_MODE
 
 typedef unsigned char flag_t;
 
@@ -35,7 +35,7 @@ struct Task_Element
   int task_id_;
   flag_t is_delay_;
   flag_t is_repeat_;
-  flag_t is_runnning_;
+  flag_t is_running_;
 
   int sec_delay_;
   int repeat_period_;

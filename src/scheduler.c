@@ -4,13 +4,15 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @created_date: 2018-05-30 15:11:02
-  * @last_modified_date: 2018-06-08 21:21:37
+  * @last_modified_date: 2018-06-09 15:16:20
   * @brief: TODO
   *-----------------------------------------------*/
 
 //INCLUDE
 #include <scheduler.h>
+#ifdef DEBUG_MODE
 #include <stdio.h>
+#endif
 
 //CODE
 int init_task_manager(Task_MGR* mgr,
@@ -25,10 +27,12 @@ int init_task_manager(Task_MGR* mgr,
 
 int monitor_task_manager(Task_MGR* mgr)
 {
+#ifdef DEBUG_MODE
   //printf("Maximum Task:  %d\n", mgr->maximum_tasks_);
   printf("The number of Tasks: %d\n", mgr->number_of_tasks_);
   printf("\n");
   printf("\n");
+#endif
   return SUCCESSED;
 }
 
@@ -48,9 +52,9 @@ int add_task(Task_MGR* mgr,
 {
   if(insert_position > mgr->maximum_tasks_)
   {
-  #ifdef DEBUG_MODE
-    printf(" [DEBUG] The insert position proceeds the maxium tasks.\n");
-  #endif
+    #ifdef DEBUG_MODE
+      printf(" [DEBUG] The insert position proceeds the maxium tasks.\n");
+    #endif
     return FAILED;
   }
   else if(insert_position > mgr->number_of_tasks_)
@@ -115,12 +119,15 @@ int delete_task(Task_MGR* mgr,
   else
   {
     int t_index = index - 1;
-    while(t_index + 1 < mgr->number_of_tasks_ - 1)
+    while(t_index + 1 < mgr->number_of_tasks_)
     {
       mgr->task_list_ptr_[t_index] = mgr->task_list_ptr_[t_index + 1];
       t_index++;
     }
     mgr->number_of_tasks_--;
+    #ifdef DEBUG_MODE
+      printf(" [DEBUG] Index%d has been deleted.\n", index);
+    #endif
     return SUCCESSED;
   }
 }
@@ -131,16 +138,19 @@ int dispatch_task(Task_MGR* mgr)
   int void_ptr = 0;
   while(index < mgr->number_of_tasks_)
   {
-    if(mgr->task_list_ptr_[index].is_runnning_ != 0)
+    if(mgr->task_list_ptr_[index].is_running_ != 0)
     {
       mgr->task_list_ptr_[index].task_ptr((void*)&void_ptr);
+      #ifdef DEBUG_MODE
+        printf("Task_id->%d\n", mgr->task_list_ptr_[index].task_id_);
+      #endif
       if(mgr->task_list_ptr_[index].is_repeat_ == 0)
       {
         delete_task(mgr, index);
         continue;
       }
-      index++;
     }
+    index++;
   }
   return 0;
 }
