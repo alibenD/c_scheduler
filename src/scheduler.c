@@ -4,7 +4,7 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @created_date: 2018-05-30 15:11:02
-  * @last_modified_date: 2018-06-09 23:06:19
+  * @last_modified_date: 2018-06-10 00:41:54
   * @brief: TODO
   *-----------------------------------------------*/
 
@@ -145,6 +145,7 @@ int dispatch_task(Task_MGR* mgr)
         printf(" [DEBUG] Task_id->%d will run\n", mgr->task_list_ptr_[index].task_id_);
       #endif
       mgr->task_list_ptr_[index].task_ptr((void*)&void_ptr);
+      mgr->task_list_ptr_[index].is_running_ = 0;
       if(mgr->task_list_ptr_[index].is_repeat_ == 0)
       {
         delete_task(mgr, index+1);
@@ -160,8 +161,18 @@ void scheduler_update(void* mgr_ptr)
 {
   Task_MGR* mgr = (Task_MGR*)mgr_ptr;
   int index = 0;
-  while(index + 1 < mgr->number_of_tasks_)
+  #ifdef DEBUG_MODE
+    printf("[DEBUG] In thread\n");
+  #endif
+  #ifdef X86
+  while(1){
+  #endif
+  while(index < mgr->number_of_tasks_)
   {
+  //#ifdef DEBUG_MODE
+  //  //printf(" [DEBUG] In thread\n");
+  //  printf(" [DEBUG] In thread: task%d\n", index + 1);
+  //#endif
     if(mgr->task_list_ptr_[index].msec_delay_ == 0)
     {
       mgr->task_list_ptr_[index].is_running_ = 1;
@@ -174,5 +185,11 @@ void scheduler_update(void* mgr_ptr)
     {
       mgr->task_list_ptr_[index].msec_delay_--;
     }
+    index++;
   }
+  #ifdef X86
+  index = 0;
+  sleep(1);
+  }
+  #endif
 }
