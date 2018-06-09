@@ -8,7 +8,7 @@
   * @version: v0.0.1
   * @file: scheduler.h
   * @create_date: 2018-05-30 15:11:02
-  * @last_modified_date: 2018-06-08 23:53:38
+  * @last_modified_date: 2018-06-09 22:00:36
   *-----------------------------------------------*/
 
 // INCLUDE
@@ -37,7 +37,7 @@ struct Task_Element
   flag_t is_repeat_;
   flag_t is_running_;
 
-  int sec_delay_;
+  int msec_delay_;
   int repeat_period_;
   //int count_run;
 };
@@ -66,6 +66,7 @@ int delete_task(Task_MGR* mgr,
                 int index);
 int dispatch_task(Task_MGR* mgr);
 int monitor_task_manager(Task_MGR* mgr);
+void scheduler_update(void* mgr_ptr);
 // DECLARATION
 
 #endif // __SCHEDULER_H__

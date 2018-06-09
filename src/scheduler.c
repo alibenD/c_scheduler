@@ -4,7 +4,7 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @created_date: 2018-05-30 15:11:02
-  * @last_modified_date: 2018-06-09 20:50:47
+  * @last_modified_date: 2018-06-09 23:06:19
   * @brief: TODO
   *-----------------------------------------------*/
 
@@ -13,6 +13,7 @@
 #ifdef DEBUG_MODE
 #include <stdio.h>
 #endif
+#include <unistd.h>
 
 //CODE
 int init_task_manager(Task_MGR* mgr,
@@ -153,4 +154,25 @@ int dispatch_task(Task_MGR* mgr)
     index++;
   }
   return 0;
+}
+
+void scheduler_update(void* mgr_ptr)
+{
+  Task_MGR* mgr = (Task_MGR*)mgr_ptr;
+  int index = 0;
+  while(index + 1 < mgr->number_of_tasks_)
+  {
+    if(mgr->task_list_ptr_[index].msec_delay_ == 0)
+    {
+      mgr->task_list_ptr_[index].is_running_ = 1;
+      if(mgr->task_list_ptr_[index].is_repeat_ == 1)
+      {
+        mgr->task_list_ptr_[index].msec_delay_ = mgr->task_list_ptr_[index].repeat_period_;
+      }
+    }
+    else
+    {
+      mgr->task_list_ptr_[index].msec_delay_--;
+    }
+  }
 }
