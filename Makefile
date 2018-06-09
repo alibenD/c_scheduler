@@ -18,7 +18,7 @@
     CC=gcc
   #COMPILER_FLAG
     CCFLAG=-Wall
-    
+    LDFLAG=-lpthread
     INCLUDEFLAG=-I./include/
 
   #DIRECTORY
@@ -85,7 +85,7 @@ $(TARGET_BIN_LIST): %: %.o
 	$(CC) $(CCFLAG) $(OBJECT_DIR)$<  $(OBJECT_DIR)$(DEP) -o $(BINARY_DIR)$@ $(INCLUDEFLAG)
 
 $(TEST_BIN_LIST): %: %.o
-	$(CC) $(OBJECT_DIR)$< $(OBJECT_DIR)$(OBJECT_LIST) $(INCLUDEFLAG) -o $(BINARY_DIR)$@
+	$(CC) $(OBJECT_DIR)$< $(OBJECT_DIR)$(OBJECT_LIST) $(INCLUDEFLAG) -o $(BINARY_DIR)$@ $(LDFLAG)
 
 .PHONY: clean check_build
 
