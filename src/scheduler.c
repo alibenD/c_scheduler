@@ -4,7 +4,7 @@
   * @version: v0.0.1
   * @author: aliben.develop@gmail.com
   * @created_date: 2018-05-30 15:11:02
-  * @last_modified_date: 2018-06-09 15:16:20
+  * @last_modified_date: 2018-06-09 20:50:47
   * @brief: TODO
   *-----------------------------------------------*/
 
@@ -126,7 +126,7 @@ int delete_task(Task_MGR* mgr,
     }
     mgr->number_of_tasks_--;
     #ifdef DEBUG_MODE
-      printf(" [DEBUG] Index%d has been deleted.\n", index);
+      printf(" [DEBUG] Task%d has been deleted.\n", index);
     #endif
     return SUCCESSED;
   }
@@ -140,13 +140,13 @@ int dispatch_task(Task_MGR* mgr)
   {
     if(mgr->task_list_ptr_[index].is_running_ != 0)
     {
-      mgr->task_list_ptr_[index].task_ptr((void*)&void_ptr);
       #ifdef DEBUG_MODE
-        printf("Task_id->%d\n", mgr->task_list_ptr_[index].task_id_);
+        printf(" [DEBUG] Task_id->%d will run\n", mgr->task_list_ptr_[index].task_id_);
       #endif
+      mgr->task_list_ptr_[index].task_ptr((void*)&void_ptr);
       if(mgr->task_list_ptr_[index].is_repeat_ == 0)
       {
-        delete_task(mgr, index);
+        delete_task(mgr, index+1);
         continue;
       }
     }
