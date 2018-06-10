@@ -8,7 +8,7 @@
   * @version: v0.0.1
   * @file: scheduler.h
   * @create_date: 2018-05-30 15:11:02
-  * @last_modified_date: 2018-06-10 00:22:05
+  * @last_modified_date: 2018-06-10 16:16:51
   *-----------------------------------------------*/
 
 // INCLUDE
@@ -25,9 +25,10 @@
 #endif
 
 #define DEBUG_MODE
-//#undef DEBUG_MODE
+#undef DEBUG_MODE
 
 #define X86
+#undef X86
 
 typedef unsigned char flag_t;
 
