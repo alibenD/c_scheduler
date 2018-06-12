@@ -8,7 +8,7 @@
   * @version: v0.0.1
   * @file: scheduler.h
   * @create_date: 2018-05-30 15:11:02
-  * @last_modified_date: 2018-06-10 16:16:51
+  * @last_modified_date: 2018-06-12 22:01:36
   *-----------------------------------------------*/
 
 // INCLUDE
@@ -40,8 +40,8 @@ struct Task_Element
   flag_t is_repeat_;
   flag_t is_running_;
 
-  int msec_delay_;
-  int repeat_period_;
+  unsigned int msec_delay_;
+  unsigned int repeat_period_;
   //int count_run;
 };
 
